@@ -47,9 +47,53 @@ module ActsAsList
       def in_scope
         where(scope_condition)
       end  		
+      
+      def move_commands symbol
+        case symbol
+        when :symbol
+          [:highest, :top, :lowest, :bottom, :up, :higher, :down, :lower]
+        when :hash
+          [:to, :above, :below]
+        else
+          raise ArgumentError, "no move_commands defined for: #{symbol}"
+        end
+      end
     end
   
-    module InstanceMethods           
+    module InstanceMethods 
+      def move command
+        if command.kind_of? Symbol
+          case command
+          when :highest, :top
+            move_to_top
+          when :lowest, :bottom
+            move_to_bottom          
+          when :up, :higher
+            move_higher
+          when :down, :lower
+            move_lower
+          else
+            raise ArgumentError, "unknown move command '#{command}', try one of #{self.class.move_commands_available}"
+          end
+        elsif command.kind_of? Hash     
+          other = command.values.first
+          cmd = command.keys.first
+          case cmd
+          when :to 
+            move_to(other)
+          when :above
+            move_above(other)
+          when :below
+            move_below(other)
+          else
+            raise ArgumentError, "Hash command #{cmd.inspect} not valid, must be one of"
+          end
+        else
+          raise ArgumentError, "move command takes either a Symbol or Hash as an argument, not a #{command.class}"
+        end        
+      end
+      
+                
       def order_by_position conditions, extras = []
         sub_collection = in_collection.where(conditions)
         sub_collection = if embedded?
@@ -94,6 +138,20 @@ module ActsAsList
 
       def insert_at(position = 1)
         insert_in_list_at(position)
+      end
+
+      def move_to(position = 1)    
+        insert_in_list_at(position)
+      end
+
+      def move_below(object)
+        new_pos = ( (self == object) or (object.my_position < self.my_position) ) ? self.my_position : object.my_position
+        move_to(new_pos)
+      end
+
+      def move_above(object)    
+        new_pos = ( self == object or (object.my_position < self.my_position) ) ? self.my_position : object.my_position - 1
+        move_to(new_pos)
       end
 
   		# Insert the item at the given position (defaults to the top position of 1).
@@ -257,23 +315,26 @@ module ActsAsList
       def decrement_positions_on_higher_items(position)
   			conditions = scope_condition
   			conditions.merge!( { position_key.lt => position } )
-  			in_collection.where(conditions).adjust! position_key => 1
+
+  			decrease_all! in_collection.where(conditions)
       end
 
       # This has the effect of moving all the lower items up one.
-      def decrement_positions_on_lower_items
+      def decrement_positions_on_lower_items(max_pos = nil)
         return unless in_list?
   			conditions = scope_condition
   			conditions.merge!( greater_than_me ) 
+        conditions.merge!({ position_key.lt => max_pos} ) if max_pos
 
         decrease_all! in_collection.where(conditions)
       end
 
       # This has the effect of moving all the higher items down one.
-      def increment_positions_on_higher_items
+      def increment_positions_on_higher_items(min_pos = nil)
         return unless in_list?
   			conditions = scope_condition
   			conditions.merge!( less_than_me )
+        conditions.merge!({ position_key.gt => min_pos} ) if min_pos
 
         increase_all! in_collection.where(conditions)
       end
@@ -306,6 +367,7 @@ module ActsAsList
       end
 
       def insert_at_position(position)
+        position = [position, 1].max
         remove_from_list
         increment_positions_on_lower_items(position)
   			set_my_position(position)
@@ -317,7 +379,7 @@ module ActsAsList
         # should register on root element to be called when root is saved first time!?
       end			
 
-      def created!
+      def init_list_item!
         self['created_at'] = Time.now
         self['updated_at'] = Time.now        
         add_to_list_bottom unless in_list?
@@ -364,7 +426,7 @@ module ActsAsList
 end
 
 class Array            
-  def created!
-    each {|i| i.created! }
+  def init_list!
+    each {|i| i.init_list_item! }
   end
 end  

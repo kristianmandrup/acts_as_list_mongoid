@@ -47,12 +47,33 @@ See the /specs folder specs that demontrate the API. Usage examples are located 
     todo_item = Item.new(:name => name)
     todo_list.items << todo_item
   end  
-  todo_list.items.created! # IMPORTANT!!!
+  todo_list.items.init_list! # IMPORTANT!!!
 
-  todo_list.items.first.move_to_bottom
-  todo_list.items.last.move_higher
+  todo_list.items.first.move(:bottom)
+  todo_list.items.last.move(:higher)
 </pre>  
-  
+
+### List initialization 
+
+In order for the list items to be initialized properly, it is necessary to call the method <code>init_list!</code> on the
+collection in order for the position of each list item to be set to an initial position.
+
++Example:+
+<code>todo_list.items.init_list!</code>
+
+## New move API borrowed from Data Mapper *in-list* plugin
+     
+<pre>
+item.move(:highest)          # moves to top of list.
+item.move(:lowest)           # moves to bottom of list.
+item.move(:top)              # moves to top of list.
+item.move(:bottom)           # moves to bottom of list.
+item.move(:up)               # moves one up (:higher and :up is the same) within the scope.
+item.move(:down)             # moves one up (:lower and :down is the same) within the scope.
+item.move(:to => position)   # moves item to a specific position.
+item.move(:above => other)   # moves item above the other item.*
+item.move(:below => other)
+<pre>
 
 ## Running the specs
 

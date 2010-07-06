@@ -5,7 +5,7 @@ begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
     gem.name        = "acts_as_list_mongoid"
-    gem.summary     = %Q{Gem version of acts_as_list for Mongoid}
+    gem.summary     = %Q{acts_as_list for Mongoid}
     gem.description = %Q{Make your Mongoid model acts as a list. This acts_as extension provides the capabilities for sorting and reordering a number of objects in a list.
       The instances that take part in the list should have a +position+ field of type Integer.}
     gem.email       = "kmandrup@gmail.com"
