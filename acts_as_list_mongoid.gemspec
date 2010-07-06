@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{acts_as_list_mongoid}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
@@ -18,9 +18,11 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".DS_Store",
+     ".gitignore",
      "README.markdown",
      "Rakefile",
      "VERSION",
+     "acts_as_list_mongoid.gemspec",
      "example/example.rb",
      "init.rb",
      "lib/.DS_Store",
@@ -29,7 +31,7 @@ Gem::Specification.new do |s|
      "lib/mongoid/acts_as_list.rb",
      "model/embedded_item.rb",
      "spec/.rspec",
-     "spec/acts_as_list/embedded/custom_embedded_spec.rb",
+     "spec/acts_as_list/embedded_item_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
   ]
@@ -37,9 +39,9 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.7}
-  s.summary = %q{Gem version of acts_as_list for Mongoid}
+  s.summary = %q{acts_as_list for Mongoid}
   s.test_files = [
-    "spec/acts_as_list/embedded/custom_embedded_spec.rb",
+    "spec/acts_as_list/embedded_item_spec.rb",
      "spec/spec_helper.rb"
   ]
 
