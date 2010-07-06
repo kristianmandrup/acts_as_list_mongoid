@@ -3,7 +3,6 @@ require 'mongoid_embedded_helper'
                  
 Mongoid.configure.master = Mongo::Connection.new.db('acts_as_list-test')
 
-
 class Item
   include Mongoid::Document
   include Mongoid::Timestamps
