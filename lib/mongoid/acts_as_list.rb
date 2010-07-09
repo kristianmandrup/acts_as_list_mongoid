@@ -145,12 +145,12 @@ module ActsAsList
       end
 
       def move_below(object)
-        new_pos = ( (self == object) or (object.my_position < self.my_position) ) ? self.my_position : object.my_position
+        new_pos = (self == object) ? self.my_position : ((object.my_position > self.my_position) ? object.my_position : object.my_position + 1)
         move_to(new_pos)
       end
 
       def move_above(object)    
-        new_pos = ( self == object or (object.my_position < self.my_position) ) ? self.my_position : object.my_position - 1
+        new_pos = ( self == object ) ? self.my_position : ((object.my_position > self.my_position) ? object.my_position - 1 : object.my_position)
         move_to(new_pos)
       end
 
@@ -414,7 +414,7 @@ module ActsAsList
 
 			def ==(other)
 				return true if other.equal?(self)
-				return true if other.instance_of?(self.class) and other._id == self._id
+				return true if other.instance_of?(self.class) and other.respond_to?('_id') and other._id == self._id
 				false
 			end
 

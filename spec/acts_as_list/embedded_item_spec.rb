@@ -134,6 +134,18 @@ describe 'ActsAsList for Mongoid' do
         get_positions(@list).should == [2, 1, 3, 4]          
       end
 
+      it "items[3].move_below(item[1]) should move item 3 to position 2" do           
+        item1 = @list.items.where(:number => 1).first
+        @list.items.where(:number => 3).first.move_below(item1)
+        get_positions(@list).should == [1, 3, 2, 4]          
+      end
+
+      it "items[3].move_above(item[2]) should move item 3 to position 2" do           
+        item2 = @list.items.where(:number => 2).first
+        @list.items.where(:number => 3).first.move_above(item2)
+        get_positions(@list).should == [1, 3, 2, 4]          
+      end
+
       it "items[1].move_above(item[3]) should move item 1 to position 2" do           
         item3 = @list.items.where(:number => 3).first
         @list.items.where(:number => 1).first.move_above(item3)
