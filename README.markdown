@@ -7,7 +7,7 @@ If you do not specify custom position +column+ in the options, a key named +pos+
 
 ## Installation
 
-<code>gem install acts_a_list_mongoid</code>
+<code>gem install acts_as_list_mongoid</code>
 
 ## Usage
 
