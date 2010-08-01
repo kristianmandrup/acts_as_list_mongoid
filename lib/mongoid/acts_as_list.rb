@@ -406,7 +406,7 @@ module ActsAsList
 			def []=(key, value)
         if set_allowed?(key)
           @attributes[key.to_s] = value 
-        elsif write_allowed?(key)
+        else
           self.send("#{key}=", value) 
         end 
 				save!
