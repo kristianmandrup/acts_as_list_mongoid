@@ -50,14 +50,14 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<mongoid>, [">= 2.0.0.beta7"])
+      s.add_runtime_dependency(%q<mongoid>, [">= 2.0.0.beta.15"])
       s.add_runtime_dependency(%q<mongoid_embedded_helper>, [">= 0.2.3"])
     else
-      s.add_dependency(%q<mongoid>, [">= 2.0.0.beta7"])
+      s.add_dependency(%q<mongoid>, [">= 2.0.0.beta.15"])
       s.add_dependency(%q<mongoid_embedded_helper>, [">= 0.2.3"])
     end
   else
-    s.add_dependency(%q<mongoid>, [">= 2.0.0.beta7"])
+    s.add_dependency(%q<mongoid>, [">= 2.0.0.beta.15"])
     s.add_dependency(%q<mongoid_embedded_helper>, [">= 0.2.3"])
   end
 end
