@@ -99,7 +99,7 @@ module ActsAsList
         sub_collection = if embedded?
           sub_collection.sort { |x,y| x.my_position <=> y.my_position }
         else
-          sub_collection.order_by([position_key, :desc])
+          sub_collection.order_by(position_key.to_sym.asc)
         end
 
         if !extras.empty?        
@@ -340,7 +340,7 @@ module ActsAsList
       end
 
       def adjust_all! collection, number
-        collection.adjust! position_key => number
+        collection.adjust!(position_key => number).each{|doc| doc.save}
       end
 
       def increase_all! collection        
