@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{acts_as_list_mongoid}
-  s.version = "0.2.0"
+  s.version = "0.2.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
-  s.date = %q{2010-07-06}
+  s.date = %q{2010-08-08}
   s.description = %q{Make your Mongoid model acts as a list. This acts_as extension provides the capabilities for sorting and reordering a number of objects in a list.
       The instances that take part in the list should have a +position+ field of type Integer.}
   s.email = %q{kmandrup@gmail.com}
@@ -19,6 +19,8 @@ Gem::Specification.new do |s|
   s.files = [
     ".DS_Store",
      ".gitignore",
+     ".rspec",
+     "Gemfile",
      "README.markdown",
      "Rakefile",
      "VERSION",
@@ -30,9 +32,10 @@ Gem::Specification.new do |s|
      "lib/init.rb",
      "lib/mongoid/acts_as_list.rb",
      "model/embedded_item.rb",
+     "model/referenced_category.rb",
      "spec/.rspec",
      "spec/acts_as_list/embedded_item_spec.rb",
-     "spec/spec.opts",
+     "spec/acts_as_list/referenced_category_spec.rb",
      "spec/spec_helper.rb"
   ]
   s.homepage = %q{http://github.com/rails/acts_as_list}
@@ -42,6 +45,7 @@ Gem::Specification.new do |s|
   s.summary = %q{acts_as_list for Mongoid}
   s.test_files = [
     "spec/acts_as_list/embedded_item_spec.rb",
+     "spec/acts_as_list/referenced_category_spec.rb",
      "spec/spec_helper.rb"
   ]
 
@@ -50,15 +54,15 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<mongoid>, [">= 2.0.0.beta7"])
-      s.add_runtime_dependency(%q<mongoid_embedded_helper>, [">= 0.2.3"])
+      s.add_runtime_dependency(%q<mongoid>, [">= 2.0.0.beta.14"])
+      s.add_runtime_dependency(%q<mongoid_embedded_helper>, [">= 0.2.5"])
     else
-      s.add_dependency(%q<mongoid>, [">= 2.0.0.beta7"])
-      s.add_dependency(%q<mongoid_embedded_helper>, [">= 0.2.3"])
+      s.add_dependency(%q<mongoid>, [">= 2.0.0.beta.14"])
+      s.add_dependency(%q<mongoid_embedded_helper>, [">= 0.2.5"])
     end
   else
-    s.add_dependency(%q<mongoid>, [">= 2.0.0.beta7"])
-    s.add_dependency(%q<mongoid_embedded_helper>, [">= 0.2.3"])
+    s.add_dependency(%q<mongoid>, [">= 2.0.0.beta.14"])
+    s.add_dependency(%q<mongoid_embedded_helper>, [">= 0.2.5"])
   end
 end
 
