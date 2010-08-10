@@ -11,8 +11,8 @@ begin
     gem.email       = "kmandrup@gmail.com"
     gem.homepage    = "http://github.com/rails/acts_as_list"
     gem.authors     = ["Kristian Mandrup"]
-    gem.add_dependency "mongoid", ">= 2.0.0.beta7"
-    gem.add_dependency "mongoid_embedded_helper", ">= 0.2.3"
+    gem.add_dependency "mongoid", ">= 2.0.0.beta.14"
+    gem.add_dependency "mongoid_embedded_helper", ">= 0.2.5"
     # gem.add_development_dependency "yard"
   end
   Jeweler::GemcutterTasks.new

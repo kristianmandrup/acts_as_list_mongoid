@@ -1,5 +1,6 @@
 require "mongoid"  
 require 'mongoid_embedded_helper'
+require 'mongoid_adjust'
 
 module ActsAsList
 	module Mongoid

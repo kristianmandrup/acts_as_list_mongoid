@@ -1,7 +1,7 @@
 class Category
   include Mongoid::Document
   include Mongoid::Timestamps
-  include ActsAsList::Mongoid 
+  include ActsAsList::Mongoid
 
   field :number, :type => Integer
 

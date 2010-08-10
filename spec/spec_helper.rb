@@ -2,6 +2,7 @@ require 'rspec'
 require 'rspec/autorun'
 require 'mongoid'
 require 'mongoid_embedded_helper'
+require 'mongoid_adjust'
 
 $:.unshift "#{File.dirname(__FILE__)}/../model/"
                  
