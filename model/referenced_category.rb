@@ -5,8 +5,8 @@ class Category
 
   field :number, :type => Integer
 
-  field :pos, :type => Integer
-  acts_as_list :column => :pos
+  # field :pos, :type => Integer
+  # acts_as_list :column => :pos
 
   references_many :categories
   referenced_in :category

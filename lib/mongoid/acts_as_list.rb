@@ -4,11 +4,11 @@ require 'mongoid_adjust'
 
 module ActsAsList
 	module Mongoid
-		def self.included(model)
-			model.class_eval do
-				extend InitializerMethods
-			end
-		end
+    included do |klass|
+      extend InitializerMethods
+      klass.field :position
+      klass.acts_as_list
+    end
 
 		module InitializerMethods
   		def acts_as_list(options = {})
