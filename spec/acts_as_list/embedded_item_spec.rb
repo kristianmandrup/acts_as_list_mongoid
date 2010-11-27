@@ -3,6 +3,8 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 require 'acts_as_list_mongoid'
 require 'embedded_item'
 
+ActsAsList::Mongoid.default_position_column = :pos
+
 describe 'ActsAsList for Mongoid' do    
   
   before :each do   

@@ -13,6 +13,21 @@ If you do not specify custom position +column+ in the options, a key named +pos+
 
 See the /specs folder specs that demontrate the API. Usage examples are located in the /examples folder.
 
+## Update 26, Nov 2010
+
+The gem doesn't seem to work with the latest versions of Mongoid (> beta14), please help fix this ;)
+Usage has been simplified using a suggestion by 'KieranP'
+
+To make a class Act as List, simply do:
+
+<pre>
+  include ActsAsList::Mongoid   
+</pre>
+
+And it will automatically set up a field and call acts_as_list with that field. By default the field name is :position.
+You can change the defaut position_column name used: <code>ActsAsList::Mongoid.default_position_column = :pos</code>.
+For this class variable to be effetive, it should be set before calling <code>include ActsAsList::Mongoid</code>. 
+
 ## Example
 
 <pre>
@@ -25,12 +40,9 @@ See the /specs folder specs that demontrate the API. Usage examples are located 
     include Mongoid::Document
     include Mongoid::Timestamps
     include ActsAsList::Mongoid 
-
-    field :pos, :type => Integer
+    
     field :number, :type => Integer
-
-    acts_as_list :column => :pos
-
+    
     embedded_in :list, :inverse_of => :items
   end    
 
@@ -52,6 +64,19 @@ See the /specs folder specs that demontrate the API. Usage examples are located 
   todo_list.items.first.move(:bottom)
   todo_list.items.last.move(:higher)
 </pre>  
+
+## Overriding defaults
+
+By default, when including ActsAsList::Mongoid, the field is set to :pos and the acts_as_list column to :pos. 
+To change this:
+
+<pre>
+  include ActsAsList::Mongoid   
+  
+  field :pos, :type => Integer
+  acts_as_list :column => :pos
+</pre>
+
 
 ### List initialization 
 

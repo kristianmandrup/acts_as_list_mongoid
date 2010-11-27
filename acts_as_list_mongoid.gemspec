@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Kristian Mandrup"]
-  s.date = %q{2010-08-08}
+  s.date = %q{2010-11-27}
   s.description = %q{Make your Mongoid model acts as a list. This acts_as extension provides the capabilities for sorting and reordering a number of objects in a list.
       The instances that take part in the list should have a +position+ field of type Integer.}
   s.email = %q{kmandrup@gmail.com}
