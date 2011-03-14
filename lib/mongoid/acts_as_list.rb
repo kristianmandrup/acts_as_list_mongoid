@@ -4,10 +4,15 @@ require 'mongoid_adjust'
 
 module ActsAsList
 	module Mongoid
-		def self.included(model)
-			model.class_eval do
-				extend InitializerMethods
-			end
+	  class << self
+	    attr_accessor :default_position_column
+    end
+	  
+		def self.included(klass)
+			klass.extend InitializerMethods
+			key = self.default_position_column || :position
+      klass.field key, :type => Integer 
+      klass.acts_as_list :column => key.to_s
 		end
 
 		module InitializerMethods
