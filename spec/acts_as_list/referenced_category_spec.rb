@@ -1,6 +1,8 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 require 'acts_as_list_mongoid'
+
+ActsAsList::Mongoid.default_position_column = :pos
 require 'referenced_category'
 
 describe 'ActsAsList for Mongoid' do    
@@ -22,7 +24,7 @@ describe 'ActsAsList for Mongoid' do
     end
   end
 
-  def get_positions category
+  def get_positions(category)
     category.reload.categories.sort { |x,y| x.my_position <=> y.my_position }.map(&:number)
   end
   

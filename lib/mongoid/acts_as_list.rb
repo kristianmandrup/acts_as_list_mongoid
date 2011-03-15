@@ -400,7 +400,7 @@ module ActsAsList
 
       def set_my_position new_position
         if new_position != my_position 
-          self[position_column] = new_position
+          self.update_attributes position_column => new_position
           save!
         end
       end
@@ -410,11 +410,7 @@ module ActsAsList
 			end
 
 			def []=(key, value)
-        if set_allowed?(key)
-          @attributes[key.to_s] = value 
-        else
-          self.send("#{key}=", value) 
-        end 
+        @attributes[key.to_s] = value 
 				save!
 			end
 
