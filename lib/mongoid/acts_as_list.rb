@@ -34,7 +34,7 @@ module ActsAsList
 				  end
         elsif configuration[:scope].is_a?(Symbol)
   				define_method :scope_condition do
-  					{ "#{configuration[:scope].to_s}" => "\#{#{configuration[:scope].to_s}}".to_i }.symbolize_keys!
+  					{configuration[:scope] => self[configuration[:scope]]}
   				end
 				else
 				  raise ArgumentError, "acts_as_list must either take a valid scope option or be in an embedded document and use the parent document as scope"
