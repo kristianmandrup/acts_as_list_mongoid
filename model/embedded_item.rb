@@ -1,12 +1,12 @@
 class Item
   include Mongoid::Document
   include Mongoid::Timestamps
-  include ActsAsList::Mongoid 
-    
-  field :number, :type => Integer
+  # include ActsAsList::Mongoid 
+  # field :number, :type => Integer
+  act_as_list
 
   embedded_in :list, :inverse_of => :items
-end    
+end
 
 class List
   include Mongoid::Document
