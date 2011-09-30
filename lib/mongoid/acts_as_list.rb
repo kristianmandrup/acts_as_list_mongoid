@@ -11,7 +11,7 @@ module ActsAsList
     def self.included(klass)
       klass.extend InitializerMethods
       key = self.default_position_column || :position
-      klass.field key, :type => Integer 
+      klass.field key, :type => Integer
       klass.acts_as_list :column => key.to_s
     end
 
@@ -20,9 +20,6 @@ module ActsAsList
         configuration = { :column => 'position' }
         configuration.update(options) if options.is_a?(Hash)
         configuration[:scope] = "#{configuration[:scope]}_id".intern if configuration[:scope].is_a?(Symbol) && configuration[:scope].to_s !~ /_id$/
-
-        # write_inheritable_attribute :acts_as_list_options, configuration
-        # class_inheritable_reader :acts_as_list_options
 
         define_method :position_column do
           configuration[:column].to_s
@@ -65,8 +62,8 @@ module ActsAsList
         end
       end
     end
-  
-    module InstanceMethods 
+
+    module InstanceMethods
       def move command
         if command.kind_of? Symbol
           case command
@@ -85,7 +82,7 @@ module ActsAsList
           other = command.values.first
           cmd = command.keys.first
           case cmd
-          when :to 
+          when :to
             move_to(other)
           when :above
             move_above(other)
@@ -110,9 +107,9 @@ module ActsAsList
 
         if !extras.empty?
           sub_collection = if embedded?
-            sub_collection.sort do |x,y| 
+            sub_collection.sort do |x,y|
               if x.my_position == y.my_position
-                x.created_at <=> y.created_at 
+                x.created_at <=> y.created_at
               else
                x.my_position <=> y.my_position
               end
@@ -377,54 +374,54 @@ module ActsAsList
     end
 
     module Triggers
-      def after_parentize     
+      def after_parentize
         # should register on root element to be called when root is saved first time!?
-      end			
+      end
 
       def init_list_item!
         self['created_at'] = Time.now
-        self['updated_at'] = Time.now        
+        self['updated_at'] = Time.now
         add_to_list_bottom unless in_list?
-      end			
+      end
 
     end
-    
+
     module Fields
-      def my_position 
+      def my_position
         self[position_column]
       end
 
       def set_my_position new_position
-        if new_position != my_position 
+        if new_position != my_position
           self.update_attributes position_column => new_position
           save!
         end
       end
 
-			def [](field_name)
-				self.send field_name
-			end
+      def [](field_name)
+        self.send field_name
+      end
 
-			def []=(key, value)
-        @attributes[key.to_s] = value 
-				save!
-			end
+      def []=(key, value)
+        @attributes[key.to_s] = value
+        save!
+      end
 
-			def ==(other)
-				return true if other.equal?(self)
-				return true if other.instance_of?(self.class) and other.respond_to?('_id') and other._id == self._id
-				false
-			end
+      def ==(other)
+        return true if other.equal?(self)
+        return true if other.instance_of?(self.class) and other.respond_to?('_id') and other._id == self._id
+        false
+      end
 
       def position_key
-        position_column.to_sym        
+        position_column.to_sym
       end
-    end      
-  end    
+    end
+  end
 end
 
-class Array            
+class Array
   def init_list!
     each {|i| i.init_list_item! }
   end
-end  
+end
