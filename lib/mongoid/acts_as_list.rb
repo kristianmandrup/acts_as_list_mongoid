@@ -1,4 +1,4 @@
-require "mongoid"  
+require "mongoid"
 require 'mongoid_embedded_helper'
 require 'mongoid_adjust'
 
@@ -323,7 +323,7 @@ module ActsAsList
       def decrement_positions_on_lower_items(max_pos = nil)
         return unless in_list?
         conditions = scope_condition
-        conditions.merge!( greater_than_me ) 
+        conditions.merge!( greater_than_me )
         conditions.merge!({ position_key.lt => max_pos} ) if max_pos
 
         decrease_all! in_collection.where(conditions)
