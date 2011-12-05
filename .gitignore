@@ -3,3 +3,4 @@ pkg
 .bundle
 vendor
 Gemfile.lock
+*/.DS_Store
