@@ -16,7 +16,6 @@ Gem::Specification.new do |s|
     "README.markdown"
   ]
   s.files = [
-    ".DS_Store",
     ".rspec",
     "Gemfile",
     "README.markdown",
@@ -25,7 +24,6 @@ Gem::Specification.new do |s|
     "acts_as_list_mongoid.gemspec",
     "example/example.rb",
     "init.rb",
-    "lib/.DS_Store",
     "lib/acts_as_list_mongoid.rb",
     "lib/init.rb",
     "lib/mongoid/acts_as_list.rb",
