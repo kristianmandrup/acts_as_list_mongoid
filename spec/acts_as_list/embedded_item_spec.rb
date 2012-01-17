@@ -122,7 +122,7 @@ describe 'ActsAsList for Mongoid' do
       end
 
       it "items[2].move(:to => 3) should move item 2 to position 3" do
-        @list.items.where(:number => 2).first.move(:to => 3
+        @list.items.where(:number => 2).first.move(:to => 3)
         get_positions(@list).should == [1, 3, 2, 4]
       end
 
