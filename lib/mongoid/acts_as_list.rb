@@ -19,7 +19,13 @@ module ActsAsList
       def acts_as_list(options = {})
         configuration = { :column => 'position' }
         configuration.update(options) if options.is_a?(Hash)
-        configuration[:scope] = "#{configuration[:scope]}_id".intern if configuration[:scope].is_a?(Symbol) && configuration[:scope].to_s !~ /_id$/
+        if configuration[:scope].is_a?(Symbol)
+          if configuration[:scope].to_s == "_type"
+            configuration[:scope] = "#{configuration[:scope]}".intern
+          elsif configuration[:scope].to_s !~ /_id$/
+            configuration[:scope] = "#{configuration[:scope]}_id".intern
+          end
+        end
 
         define_method :position_column do
           configuration[:column].to_s
