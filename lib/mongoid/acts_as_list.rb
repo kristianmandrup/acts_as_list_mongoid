@@ -19,11 +19,12 @@ module ActsAsList
       def acts_as_list(options = {})
         configuration = { :column => 'position' }
         configuration.update(options) if options.is_a?(Hash)
-        configuration[:scope] = configuration[:scope].to_sym
-        configuration[:scope] = "_type".intern and return if configuration[:scope] == :_type
-        configuration[:scope] = "#{configuration[:scope]}_id".intern if configuration[:scope].to_s !~ /_id$/
-      end
-
+        
+        if configuration[:scope]
+          configuration[:scope] = configuration[:scope].to_sym
+          configuration[:scope] = "#{configuration[:scope]}_id".intern if configuration[:scope].to_s !~ /_id$/
+        end
+        
         define_method :position_column do
           configuration[:column].to_s
         end
@@ -37,7 +38,7 @@ module ActsAsList
             {configuration[:scope] => self[configuration[:scope]]}
           end
         else
-          raise ArgumentError, "acts_as_list must either take a valid scope option or be in an embedded document and use the parent document as scope"
+          raise ArgumentError, "acts_as_list must either take a valid :scope option or be in an embedded document and use the parent document as scope"
         end
 
         include ::Mongoid::EmbeddedHelper
