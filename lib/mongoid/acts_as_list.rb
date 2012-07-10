@@ -104,7 +104,11 @@ module ActsAsList
       def order_by_position conditions, extras = []
         sub_collection = in_collection.where(conditions)
         sub_collection = if embedded?
-          sub_collection.sort { |x,y| x.my_position <=> y.my_position }
+          if sub_collection.method(:sort).arity == 0
+            sub_collection.sort { |x,y| x.my_position <=> y.my_position }
+          else
+            sub_collection.sort(:my_position => 1)
+          end
         else
           sub_collection.order_by(position_key.to_sym.asc)
         end

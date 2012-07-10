@@ -4,15 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{acts_as_list_mongoid}
-  s.version = "0.2.5.1"
+  s.name = "acts_as_list_mongoid"
+  s.version = "0.3.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Kristian Mandrup}]
-  s.date = %q{2012-01-19}
-  s.description = %q{Make your Mongoid model acts as a list. This acts_as extension provides the capabilities for sorting and reordering a number of objects in a list.
-      The instances that take part in the list should have a +position+ field of type Integer.}
-  s.email = %q{kmandrup@gmail.com}
+  s.authors = ["Kristian Mandrup"]
+  s.date = "2012-07-10"
+  s.description = "Make your Mongoid model acts as a list. This acts_as extension provides the capabilities for sorting and reordering a number of objects in a list.\n      The instances that take part in the list should have a +position+ field of type Integer."
+  s.email = "kmandrup@gmail.com"
   s.extra_rdoc_files = [
     "README.markdown"
   ]
@@ -35,45 +34,42 @@ Gem::Specification.new do |s|
     "spec/acts_as_list/referenced_category_spec.rb",
     "spec/spec_helper.rb"
   ]
-  s.homepage = %q{http://github.com/rails/acts_as_list}
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.6}
-  s.summary = %q{acts_as_list for Mongoid}
+  s.homepage = "http://github.com/rails/acts_as_list"
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.24"
+  s.summary = "acts_as_list for Mongoid"
 
   if s.respond_to? :specification_version then
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<mongoid>, [">= 2.0.1"])
+      s.add_runtime_dependency(%q<mongoid>, [">= 3.0.0"])
       s.add_runtime_dependency(%q<mongoid_embedded_helper>, [">= 0.2.5"])
       s.add_development_dependency(%q<cutter>, [">= 0"])
       s.add_development_dependency(%q<shoulda>, [">= 0"])
-      s.add_development_dependency(%q<bson_ext>, [">= 1.5.1"])
       s.add_development_dependency(%q<rspec>, [">= 2.5"])
       s.add_development_dependency(%q<bundler>, [">= 1.0.10"])
       s.add_development_dependency(%q<jeweler>, [">= 1.6.4"])
-      s.add_development_dependency(%q<rcov>, [">= 0"])
+      s.add_development_dependency(%q<simplecov>, [">= 0"])
     else
-      s.add_dependency(%q<mongoid>, [">= 2.0.1"])
+      s.add_dependency(%q<mongoid>, [">= 3.0.0"])
       s.add_dependency(%q<mongoid_embedded_helper>, [">= 0.2.5"])
       s.add_dependency(%q<cutter>, [">= 0"])
       s.add_dependency(%q<shoulda>, [">= 0"])
-      s.add_dependency(%q<bson_ext>, [">= 1.5.1"])
       s.add_dependency(%q<rspec>, [">= 2.5"])
       s.add_dependency(%q<bundler>, [">= 1.0.10"])
       s.add_dependency(%q<jeweler>, [">= 1.6.4"])
-      s.add_dependency(%q<rcov>, [">= 0"])
+      s.add_dependency(%q<simplecov>, [">= 0"])
     end
   else
-    s.add_dependency(%q<mongoid>, [">= 2.0.1"])
+    s.add_dependency(%q<mongoid>, [">= 3.0.0"])
     s.add_dependency(%q<mongoid_embedded_helper>, [">= 0.2.5"])
     s.add_dependency(%q<cutter>, [">= 0"])
     s.add_dependency(%q<shoulda>, [">= 0"])
-    s.add_dependency(%q<bson_ext>, [">= 1.5.1"])
     s.add_dependency(%q<rspec>, [">= 2.5"])
     s.add_dependency(%q<bundler>, [">= 1.0.10"])
     s.add_dependency(%q<jeweler>, [">= 1.6.4"])
-    s.add_dependency(%q<rcov>, [">= 0"])
+    s.add_dependency(%q<simplecov>, [">= 0"])
   end
 end
 

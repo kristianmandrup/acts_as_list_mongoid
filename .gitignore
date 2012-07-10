@@ -4,3 +4,4 @@ pkg
 vendor
 Gemfile.lock
 */.DS_Store
+/coverage/
