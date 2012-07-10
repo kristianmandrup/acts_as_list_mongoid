@@ -17,9 +17,7 @@ describe 'ActsAsList for Mongoid' do
   end
 
   after :each do
-    Mongoid.database.collections.each do |coll|
-      coll.remove
-    end
+    Category.mongo_session.drop
   end
 
   def get_positions(category)
