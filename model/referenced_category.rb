@@ -11,8 +11,8 @@ class Category
   #many should below in, or we will get:
   #NoMethodError:
   #       undefined method `entries' for #<Category:0x9acbaa8>
-  referenced_in :category
-  references_many :categories
+  belongs_to :category
+  has_many :categories
 
   def scope_condition
     {:category_id => category.id, :pos.ne => nil}

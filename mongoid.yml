@@ -1,0 +1,9 @@
+test:
+  sessions:
+    default:
+      hosts:
+      - localhost:27017
+      database: acts_as_list_test
+
+
+
