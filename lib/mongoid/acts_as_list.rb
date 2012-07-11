@@ -401,8 +401,7 @@ module ActsAsList
 
       def set_my_position new_position
         if new_position != my_position
-          self.update_attributes position_column => new_position
-          save!
+          self.update_attributes! position_column => new_position
         end
       end
 
