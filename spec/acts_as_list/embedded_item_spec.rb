@@ -21,7 +21,7 @@ describe 'ActsAsList for Mongoid' do
   end
 
   def get_positions list
-    list.items.sort { |x,y| x.my_position <=> y.my_position }.map(&:number)
+    list.items.sort.map(&:number)
   end
 
   context "4 list items (1,2,3,4) that have parent_id pointing to first list container"  do
