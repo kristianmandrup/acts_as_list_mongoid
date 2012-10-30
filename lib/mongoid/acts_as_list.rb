@@ -420,6 +420,11 @@ module ActsAsList
         false
       end
 
+      # Overwrites default comparer to return comparison index value based on defined position
+      def <=>(other)
+        self[position_column] <=> other[position_column]
+      end
+
       def position_key
         position_column.to_sym
       end
