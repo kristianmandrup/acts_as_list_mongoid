@@ -21,7 +21,7 @@ describe 'ActsAsList for Mongoid' do
   end
 
   def get_positions(category)
-    category.reload.categories.sort { |x,y| x.my_position <=> y.my_position }.map(&:number)
+    category.reload.categories.sort.map(&:number)
   end
 
   context "4 category categories (1,2,3,4) that have parent_id pointing to first category container" do
