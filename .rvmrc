@@ -1,0 +1,1 @@
+rvm use --create 1.9.3@act_as_list_mongoid
